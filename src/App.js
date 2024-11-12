@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faBars, faUtensils, faList, faPlus, faBlog } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faBars, faUtensils, faList, faPlus, faBlog, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp, faTwitter, faInstagram, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('addRecipe');
   const [recipes, setRecipes] = useState([]);
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [newRecipe, setNewRecipe] = useState({
     title: '',
     description: '',
@@ -49,6 +50,14 @@ const App = () => {
     setActiveTab('sharedRecipes');
   };
 
+  const handleRecipeClick = (recipe) => {
+    setSelectedRecipe(recipe);
+  };
+
+  const handleBackClick = () => {
+    setSelectedRecipe(null);
+  };
+
   return (
       <div className="min-h-screen flex flex-col bg-gray-100 text-gray-800 font-sans">
         <header className="bg-white shadow-md">
@@ -69,10 +78,10 @@ const App = () => {
           {isMenuOpen && (
               <div className="md:hidden bg-white shadow-lg rounded-b-lg">
                 <ul className="flex flex-col items-center py-2">
-                  <li className="py-2"><a href="https://cookbookv2-y8ir.vercel.app/" className="hover:text-CookBookGreen transition-colors duration-200">Home</a></li>
-                  <li className="py-2"><a href="https://cookbookv2-y8ir.vercel.app/meal-index.html" className="hover:text-CookBookGreen transition-colors duration-200">Recipes</a></li>
-                  <li className="py-2"><a href="#" className="hover:text-CookBookGreen transition-colors duration-200">Add Recipes</a></li>
-                  <li className="py-2"><a href="https://cookbookv2-y8ir.vercel.app/blog-list.html" className="hover:text-CookBookGreen transition-colors duration-200">Blog</a></li>
+                  <li className="py-2"><a href="https://cookbookv2-y8ir.vercel.app/" className="hover:text-CookBookDark transition-colors duration-200">Home</a></li>
+                  <li className="py-2"><a href="https://cookbookv2-y8ir.vercel.app/meal-index.html" className="hover:text-CookBookDark transition-colors duration-200">Recipes</a></li>
+                  <li className="py-2"><a href="#" className="hover:text-CookBookDark transition-colors duration-200">Add Recipes</a></li>
+                  <li className="py-2"><a href="https://cookbookv2-y8ir.vercel.app/blog-list.html" className="hover:text-CookBookDark transition-colors duration-200">Blog</a></li>
                 </ul>
               </div>
           )}
@@ -166,21 +175,35 @@ const App = () => {
           {activeTab === 'sharedRecipes' && (
               <section className="bg-white p-8 rounded-lg shadow-lg">
                 <h2 className="text-3xl font-bold mb-6 text-center text-CookBookGreen">Shared Recipes</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {recipes.map((recipe, index) => (
-                      <div key={index} className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
-                        {recipe.image && <img src={recipe.image} alt={recipe.title} className="w-full h-48 object-cover" />}
-                        <div className="p-6">
-                          <h3 className="text-xl font-semibold text-CookBookGreen mb-2">{recipe.title}</h3>
-                          <p className="text-gray-600 mb-4">{recipe.description}</p>
-                          <h4 className="font-semibold text-gray-700 mb-1">Ingredients:</h4>
-                          <p className="text-gray-600 mb-4">{recipe.ingredients}</p>
-                          <h4 className="font-semibold text-gray-700 mb-1">Steps:</h4>
-                          <p className="text-gray-600">{recipe.steps}</p>
-                        </div>
+                {selectedRecipe ? (
+                    <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md">
+                      <div className="p-6">
+                        <button onClick={handleBackClick} className="mb-4 flex items-center text-CookBookGreen hover:text-CookBookDark transition duration-200">
+                          <FontAwesomeIcon icon={faChevronLeft} className="mr-2" />
+                          Back to recipes
+                        </button>
+                        {selectedRecipe.image && <img src={selectedRecipe.image} alt={selectedRecipe.title} className="w-full h-64 object-cover rounded-lg mb-4" />}
+                        <h3 className="text-2xl font-semibold text-CookBookGreen mb-2">{selectedRecipe.title}</h3>
+                        <p className="text-gray-600 mb-4">{selectedRecipe.description}</p>
+                        <h4 className="font-semibold text-gray-700 mb-2">Ingredients:</h4>
+                        <p className="text-gray-600 mb-4">{selectedRecipe.ingredients}</p>
+                        <h4 className="font-semibold text-gray-700 mb-2">Steps:</h4>
+                        <p className="text-gray-600">{selectedRecipe.steps}</p>
                       </div>
-                  ))}
-                </div>
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                      {recipes.map((recipe, index) => (
+                          <div key={index} className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 cursor-pointer" onClick={() => handleRecipeClick(recipe)}>
+                            {recipe.image && <img src={recipe.image} alt={recipe.title} className="w-full h-48 object-cover" />}
+                            <div className="p-6">
+                              <h3 className="text-xl font-semibold text-CookBookGreen mb-2">{recipe.title}</h3>
+                              <p className="text-gray-600 line-clamp-3">{recipe.description}</p>
+                            </div>
+                          </div>
+                      ))}
+                    </div>
+                )}
               </section>
           )}
         </main>
