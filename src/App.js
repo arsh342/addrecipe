@@ -66,10 +66,10 @@ const App = () => {
               <img src="https://i.postimg.cc/mDBsM7gV/Untitled-5-2-removebg-preview.png" alt="cookbook" className="w-16 h-16 object-contain mr-2" />
             </div>
             <ul className="hidden md:flex space-x-6">
-              <li><a href="https://cookbookv2-y8ir.vercel.app/" className="flex items-center hover:text-CookBookDark transition-colors duration-200">Home</a></li>
-              <li><a href="https://cookbookv2-y8ir.vercel.app/meal-index.html" className="flex items-center hover:text-CookBookDark transition-colors duration-200">Recipes</a></li>
+              <li><a href="https://cookbookrecipes.vercel.app/" className="flex items-center hover:text-CookBookDark transition-colors duration-200">Home</a></li>
+              <li><a href="https://cookbookrecipes.vercel.app/meal-index.html" className="flex items-center hover:text-CookBookDark transition-colors duration-200">Recipes</a></li>
               <li><a href="#" className="flex items-center hover:text-CookBookDark transition-colors duration-200">Add Recipes</a></li>
-              <li><a href="https://cookbookv2-y8ir.vercel.app/blog-list.html" className="flex items-center hover:text-CookBookDark transition-colors duration-200">Blog</a></li>
+              <li><a href="https://cookbookrecipes.vercel.app/blog-list.html" className="flex items-center hover:text-CookBookDark transition-colors duration-200">Blog</a></li>
             </ul>
             <div className="md:hidden cursor-pointer" onClick={toggleMenu}>
               <FontAwesomeIcon icon={isMenuOpen ? faTimes : faBars} size="lg" />
@@ -78,10 +78,10 @@ const App = () => {
           {isMenuOpen && (
               <div className="md:hidden bg-white shadow-lg rounded-b-lg">
                 <ul className="flex flex-col items-center py-2">
-                  <li className="py-2"><a href="https://cookbookv2-y8ir.vercel.app/" className="hover:text-CookBookDark transition-colors duration-200">Home</a></li>
-                  <li className="py-2"><a href="https://cookbookv2-y8ir.vercel.app/meal-index.html" className="hover:text-CookBookDark transition-colors duration-200">Recipes</a></li>
+                  <li className="py-2"><a href="https://cookbookrecipes.vercel.app/" className="hover:text-CookBookDark transition-colors duration-200">Home</a></li>
+                  <li className="py-2"><a href="https://cookbookrecipes.vercel.app/meal-index.html" className="hover:text-CookBookDark transition-colors duration-200">Recipes</a></li>
                   <li className="py-2"><a href="#" className="hover:text-CookBookDark transition-colors duration-200">Add Recipes</a></li>
-                  <li className="py-2"><a href="https://cookbookv2-y8ir.vercel.app/blog-list.html" className="hover:text-CookBookDark transition-colors duration-200">Blog</a></li>
+                  <li className="py-2"><a href="https://cookbookrecipes.vercel.app/blog-list.html" className="hover:text-CookBookDark transition-colors duration-200">Blog</a></li>
                 </ul>
               </div>
           )}
@@ -214,10 +214,10 @@ const App = () => {
               <div>
                 <h5 className="font-bold text-lg mb-4">Explore</h5>
                 <ul className="space-y-2">
-                  <li><a href="https://cookbookv2-y8ir.vercel.app/" className="hover:underline transition duration-200">Home</a></li>
-                  <li><a href="https://cookbookv2-y8ir.vercel.app/meal-index.html" className="hover:underline transition duration-200">Recipes</a></li>
+                  <li><a href="https://cookbookrecipes.vercel.app/" className="hover:underline transition duration-200">Home</a></li>
+                  <li><a href="https://cookbookrecipes.vercel.app/meal-index.html" className="hover:underline transition duration-200">Recipes</a></li>
                   <li><a href="#" className="hover:underline transition duration-200">Add Recipes</a></li>
-                  <li><a href="https://cookbookv2-y8ir.vercel.app/blog-list.html" className="hover:underline transition duration-200">Blog</a></li>
+                  <li><a href="https://cookbookrecipes.vercel.app/blog-list.html" className="hover:underline transition duration-200">Blog</a></li>
                 </ul>
               </div>
               <div>
